@@ -1,0 +1,8 @@
+<h1>Camping Store</h1>
+
+<%@items.each do |item|%> 
+<p>Item: <%= item.name%></p>
+<p>Price: <%= item.price %></p>
+<img src=<%= item.image %>>
+<p>Description:<%= item.description %></p>
+<% end %>
