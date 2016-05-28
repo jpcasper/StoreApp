@@ -3,7 +3,7 @@
 
 
 
-<%= form_tag "/items/{ @item.id }", method: :patch do %>
+<%= form_tag "/items/#{ @item.id }", method: :patch do %>
 
   <div>
   <%= label_tag :name %>
@@ -20,9 +20,14 @@
   <%= text_field_tag :description, @item.description %>
   </div>
 
+  <div>
+  <%= label_tag :stock %>
+  <%= text_field_tag :stock %>
+  </div>
+
    <div>
-  <%= label_tag :image %>
-  <%= text_field_tag :image, @item.image %>
+  <%= label_tag :supplier_id %>
+  <%= text_field_tag :supplier_id, @item.supplier_id %>
   </div>
 
 

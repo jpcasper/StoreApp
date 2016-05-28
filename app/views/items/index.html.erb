@@ -1,8 +1,18 @@
-<h1>Camping Store</h1>
+<h1>Casper's Camping Store</h1>
 
-<%@items.each do |item|%> 
-<p>Item: <%= item.name%></p>
-<p>Price: <%= item.price %></p>
-<img src=<%= item.image %>>
-<p>Description:<%= item.description %></p>
-<% end %>
+<div class="row">
+
+  <%@items.each do |item|%> 
+  <div class="col-md-4">
+    <div class="thumbnail">
+    <h2><a href="/items/<%= item.id %>"><%= item.name %></a></h2>
+    <p>Item: <%= item.name%></p>
+    <p>Price:$ <%= number_to_currency(item.price) %></p>
+    
+    <p>Description:<%= item.description %></p>
+    <h3>Inventory:<%= item.stock %></h3>
+    <br>
+    </div>
+  </div>
+  <% end %>
+<div>

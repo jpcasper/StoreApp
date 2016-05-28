@@ -1,6 +1,42 @@
 <h1><%= @item.name %></h1>
-<img src=<%= @item.image %>>
-<h3>Price:$<%= @item.price %></h3>
-<h3>Description:<%= @item.description %></h3>
 
+<%= @item.images.each do |image_object| %>
+<img src=<%= @item.images.url %>>
+<% end %>
+<h3>Price with tax:<%= number_to_currency(@item.total) %></h3>
+<h3><%= @item.sale_message %></h3>
+<h3>Description:<%= @item.description %></h3>
+<h4>Categories: </h4>
+<ul>
+  <% @item.categories.each do |category| %>
+  <li><%= category.name %></li>
+<% end %>
+</ul>
+<h6>Supplier: <%= @item.supplier_id %></h6>
+<h3>Inventory:<%= @item.stock %></h3>
 <h5><a href="/items/<%= @item.id %>/edit">Edit</a></h5>
+<h5><%= link_to "Delete", "/items/#{@item.id}", method: :delete %></h5>
+<h3>Check-Out Here!</h3>
+<h2> How Many Would You Like To Buy???</h2>
+<%= form_tag '/carted_products', method: :post do %>
+
+<div>
+ 
+  <%= label_tag :quantity %>
+  <%= text_field_tag :quantity %>
+
+</div>
+ 
+
+  <%= hidden_field_tag :supply_id, @item.id %>
+
+<div>
+  
+
+</div>
+
+<div> 
+  <%= submit_tag 'Add to Cart!', class: "btn btn-default" %>
+</div>
+
+<% end %>
