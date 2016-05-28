@@ -1,7 +1,7 @@
 <h1><%= @item.name %></h1>
 
 <%= @item.images.each do |image_object| %>
-<img src=<%= @item.images.url %>>
+<img src="<%= images.url %>" alt="<%= @item.name %>" class ="img-responsive">
 <% end %>
 <h3>Price with tax:<%= number_to_currency(@item.total) %></h3>
 <h3><%= @item.sale_message %></h3>

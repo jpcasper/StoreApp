@@ -26,7 +26,7 @@ class Supply < ActiveRecord::Base
   end
 
   def image_preview_url
-    images.url
+    images.first.url
   end
 end
 
