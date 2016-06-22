@@ -1,39 +1,42 @@
 <h1>Suggest a new Product!</h1>
 
 
+<% @item.errors.full_messages.each do |error| %>
+  <h3><%= error %></h3>
+<% end %>
 
 
 <%= form_tag '/items', method: :post do %>
 
   <div>
   <%= label_tag :name %>
-  <%= text_field_tag :name %>
+  <%= text_field_tag :name, @item.name %>
   </div>
   
  <div>
   <%= label_tag :price %>
-  <%= text_field_tag :price %>
-  </div>
+  <%= text_field_tag :price, @item.price %>
+</div>
 
-   <div>
+<div>
   <%= label_tag :description %>
-  <%= text_field_tag :description %>
-  </div>
+  <%= text_field_tag :description, @item.description %>
+</div>
 
-     <div>
+<div>
   <%= label_tag :stock %>
   <%= text_field_tag :stock %>
-  </div>
+</div>
 
-   <div>
+<div>
   <%= label_tag :supplier_id %>
   <%= text_field_tag :supplier_id %>
-  </div>
+</div>
 
 
-   <div>
+<div>
   <%= submit_tag 'Punch Right Here, Joe!' %>
-  </div>
+</div>
 
 
 

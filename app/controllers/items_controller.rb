@@ -1,8 +1,13 @@
 class ItemsController < ApplicationController
  
+  before_action :authenticate_admin!, only: [:new, :create, :edit, :update, :delete]
+ 
+  
   def index
+    @test_token = ENV['test_api_token']
+    @test_secret =ENV['test_api_secret']
 
-     @items = Supply.all
+    @items = Supply.all
      up_sort = params[:up_sort]
      down_sort = params[:down_sort]
      discount_value = params[:discount]
@@ -35,36 +40,47 @@ class ItemsController < ApplicationController
   end
 
   def new
+    @item = Supply.new
 
   end
 
   def create
-    @item = Supply.create(
+    @item = Supply.new(
       name: params[:name],
       price: params[:price],
       description: params[:description], 
       stock: params[:stock]
       )
 
-    flash[:success] = "Item Created"
-    redirect_to "/items/#{@item.id}"
+    if @item.save 
+      Image.create(url: params[:image], supply_id: @supply.id) if params[:image] != ""
+
+      flash[:success] = "Item Created"
+      redirect_to "/items/#{@item.id}"
+    else
+      render :new
+    end
    end
 
    def edit
-    @item = Supply.find_by(id: params[:id])
-  end
+      @item = Supply.find_by(id: params[:id])
+    end
 
   def update
     @item = Supply.find_by(id: params[:id])
 
-    @item.update(
+    if @item.update(
       name: params[:name],
       price: params[:price],
       description: params[:description], 
       stock: params[:stock]
       )
+
      flash[:success] = "Item Updated"
     render 'show.html.erb'
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -80,4 +96,6 @@ class ItemsController < ApplicationController
 
   redirect_to "/items/#{item.id}"
   end
+
+
 end

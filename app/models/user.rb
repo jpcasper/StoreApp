@@ -6,4 +6,8 @@ class User < ActiveRecord::Base
 
          has_many :orders
          has_many :carted_products
+
+  def carted_items
+    carted_products.where(status: 'carted')
+  end
 end

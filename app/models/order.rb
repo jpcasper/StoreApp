@@ -1,10 +1,17 @@
 class Order < ActiveRecord::Base
-  belongs_to :supply
+  
+  validates :user_id, presence: true
+
   belongs_to :user
   has_many :carted_products
+  has_many :supplies, through: :carted_products
 
-  def calculate_subtotal(item_price)
-    self.subtotal = item_price * quantity
+  def calculate_subtotal(cart_items)
+    self.subtotal = 0
+
+    cart_items.each do |cart_item|
+      self.subtotal += cart_item.supply.price * cart_item.quantity
+    end
   end
 
   def calculate_tax
@@ -16,7 +23,7 @@ class Order < ActiveRecord::Base
   end
 
   def calculate_figures(item_price)
-    calculate_subtotaL(item_price)
+    calculate_subtotal(item_price)
     calculate_tax
     calculate_total
   end

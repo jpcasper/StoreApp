@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   # get '/carted_products/:id/edit' => 'carted_products#edit'
   # patch '/carted_products/:id' => 'carted_products#update'
 
-  # delete '/carted_products/:id' => 'carted_products#destroy'
+  delete '/carted_products/:id' => 'carted_products#destroy'
 
 
 

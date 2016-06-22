@@ -4,7 +4,7 @@ class CreateCartedProducts < ActiveRecord::Migration
       t.integer :user_id
       t.integer :supply_id
       t.integer :quantity
-      t.string :status
+      t.string :status, default: "carted"
       t.integer :order_id
 
       t.timestamps null: false

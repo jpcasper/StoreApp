@@ -1,6 +1,8 @@
 <h1>Edit Your Items Right Here, Joe!</h1>
 
-
+<% @item.errors.full_messages.each do |error| %>
+  <h3><%= error %></h3>
+<% end %>
 
 
 <%= form_tag "/items/#{ @item.id }", method: :patch do %>

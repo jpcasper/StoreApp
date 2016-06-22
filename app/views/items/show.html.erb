@@ -14,9 +14,11 @@
 </ul>
 <h6>Supplier: <%= @item.supplier_id %></h6>
 <h3>Inventory:<%= @item.stock %></h3>
+
 <h5><a href="/items/<%= @item.id %>/edit">Edit</a></h5>
 <h5><%= link_to "Delete", "/items/#{@item.id}", method: :delete %></h5>
 <h3>Check-Out Here!</h3>
+<% if user_signed_in? %>
 <h2> How Many Would You Like To Buy???</h2>
 <%= form_tag '/carted_products', method: :post do %>
 
@@ -38,5 +40,10 @@
 <div> 
   <%= submit_tag 'Add to Cart!', class: "btn btn-default" %>
 </div>
+
+<% end %>
+
+<% else %>
+<h2>If you want to purchase this item please <%= link_to 'Sign In', '/users/sign_in' %> or <%= link_to 'Sign Up', '/users/sign_up' %></h2>
 
 <% end %>
