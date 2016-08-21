@@ -1,18 +1,18 @@
 <h1><%= @item.name %></h1>
 
-<%= @item.images.each do |image_object| %>
-<img src="<%= images.url %>" alt="<%= @item.name %>" class ="img-responsive">
+<% @item.images.each do |image_object| %>
+  <img src="<%= image_object.url %>" alt="<%= @item.name %>" class ="img-responsive">
 <% end %>
 <h3>Price with tax:<%= number_to_currency(@item.total) %></h3>
-<h3><%= @item.sale_message %></h3>
-<h3>Description:<%= @item.description %></h3>
-<h4>Categories: </h4>
+  <h3><%= @item.sale_message %></h3>
+  <h3>Description:<%= @item.description %></h3>
+  <h4>Categories: </h4>
 <ul>
   <% @item.categories.each do |category| %>
-  <li><%= category.name %></li>
-<% end %>
+      <li><%= category.name %></li>
+  <% end %>
 </ul>
-<h6>Supplier: <%= @item.supplier_id %></h6>
+<h6>Supplier: <%= @item.supplier.name %></h6>
 <h3>Inventory:<%= @item.stock %></h3>
 
 <h5><a href="/items/<%= @item.id %>/edit">Edit</a></h5>

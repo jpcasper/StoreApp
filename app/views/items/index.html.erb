@@ -3,19 +3,19 @@
 <div class="row">
 
   <%@items.each do |item|%> 
-  <div class="col-md-4">
-    <div class="thumbnail">
-    <h2><a href="/items/<%= item.id %>"><%= item.name %></a></h2>
-    <p>Item: <%= item.name%></p>
-    <p>Price:$ <%= number_to_currency(item.price) %></p>
+    <div class="col-md-4">
+      <div class="thumbnail">
+          <h2><a href="/items/<%= item.id %>"><img src="<%= item.image_preview_url %>"<%= item.name %></a></h2>
+          <p>Item: <%= item.name%></p>
+          <p>Price:$ <%= number_to_currency(item.price) %></p>
     
-    <p>Description:<%= item.description %></p>
-    <h3>Inventory:<%= item.stock %></h3>
-    <br>
+          <p>Description:<%= item.description %></p>
+          <h3>Inventory:<%= item.stock %></h3>
+          <br>
+      </div>
     </div>
-  </div>
-  <% end %>
-<div>
+    <% end %>
 
-<p><%= @test_token %></p>
-<p><%= @test_secret %></p>
+<!-- 
+<p><% @test_token %></p>
+<p><% @test_secret %></p> -->
